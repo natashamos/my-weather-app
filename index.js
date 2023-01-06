@@ -25,22 +25,7 @@ let day = days[now.getDay()];
 
 h2.innerHTML = `${day} ${hours}:${minutes}`;
 
-// search form
-function searchCity(event) {
-  event.preventDefault();
-  let searchCityInput = document.querySelector("#search-city-input");
-  let currentCity = document.querySelector("#current-city");
-  currentCity.innerHTML = searchCityInput.value;
-  findCity(searchCityInput.value);
-}
-
-function findCity(city) {
-  let apiKey = "29be32213f7acee7090f774579eb6a64";
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
-  axios.get(apiUrl).then(showWeather);
-  console.log(apiUrl);
-}
-
+// weather details from API
 function showWeather(response) {
   let temperature = Math.round(response.data.main.temp);
   let temperatureMain = document.querySelector("#current-temperature");
@@ -58,8 +43,27 @@ function showWeather(response) {
   humidity.innerHTML = Math.round(response.data.main.humidity);
 }
 
+function searchCity(city) {
+  let apiKey = "29be32213f7acee7090f774579eb6a64";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(showWeather);
+  console.log(apiUrl);
+}
+
+// search form
+function handleSubmit(event) {
+  event.preventDefault();
+  let searchCityInput = document.querySelector("#search-city-input");
+  let currentCity = document.querySelector("#current-city");
+  currentCity.innerHTML = searchCityInput.value;
+  searchCity(searchCityInput.value);
+}
+
 let form = document.querySelector("#search-form");
-form.addEventListener("submit", searchCity);
+form.addEventListener("submit", handleSubmit);
+
+// default city
+searchCity("Grad Zagreb");
 
 // current location
 function getLatLon(response) {
