@@ -115,3 +115,7 @@ footer {
   font-weight: 600;
   color: #719192;
 }
+
+.footer-link:hover {
+  color: #3c4245;
+}
