@@ -58,21 +58,21 @@ h2 {
 .today {
   padding-bottom: 20px;
 }
-.current {
+.current-temperature {
   font-size: 50px;
   font-weight: 600;
 }
 
-a {
+.col a {
   text-decoration: none;
   color: #719192;
   font-size: 20px;
 }
-a:hover {
+.col a:hover {
   color: #3c4245;
   cursor: pointer;
 }
-a:active {
+.col a:active {
   color: #3c4245;
 }
 
@@ -101,4 +101,17 @@ li {
 
 i {
   font-size: 25px;
+}
+
+footer {
+  text-align: center;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 13px;
+  padding-top: 10px;
+}
+
+.footer-link {
+  text-decoration: none;
+  font-weight: 600;
+  color: #719192;
 }
