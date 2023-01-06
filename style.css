@@ -1,0 +1,104 @@
+body {
+  display: block;
+  margin: 0 auto;
+  margin-top: 60px;
+  max-width: 600px;
+  font-family: "Cardo", serif;
+  color: #3c4245;
+}
+
+.weather {
+  background: #dfcdc3;
+  border-radius: 10px;
+  padding: 30px 60px 20px 60px;
+  box-shadow: 5px 5px 30px rgba(0, 0, 0, 0.2);
+}
+
+form {
+  display: block;
+  padding-bottom: 10px;
+  text-align: center;
+}
+
+.btn {
+  background: #3c4245;
+  color: #fff;
+  border: none;
+  transition: all 200ms ease-in-out;
+}
+
+.btn:hover {
+  background: #5e686d;
+}
+
+button {
+  background: #719192;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 0px 10px 0px 10px;
+  transition: all 200ms ease-in-out;
+}
+
+button:hover {
+  background: #89aeb0;
+}
+
+h1 {
+  text-align: center;
+}
+
+h2 {
+  text-align: center;
+  font-size: 15px;
+  font-weight: 300;
+  padding-bottom: 20px;
+}
+
+.today {
+  padding-bottom: 20px;
+}
+.current {
+  font-size: 50px;
+  font-weight: 600;
+}
+
+a {
+  text-decoration: none;
+  color: #719192;
+  font-size: 20px;
+}
+a:hover {
+  color: #3c4245;
+  cursor: pointer;
+}
+a:active {
+  color: #3c4245;
+}
+
+.high {
+  font-weight: 600;
+}
+
+.currentpic {
+  font-size: 70px;
+  padding-top: 15px;
+}
+
+.details {
+  text-align: left;
+  line-height: 2;
+}
+ul {
+  list-style: none;
+  padding-left: 0;
+  line-height: 2;
+}
+
+li {
+  font-size: 15px;
+}
+
+i {
+  font-size: 25px;
+}
