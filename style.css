@@ -46,11 +46,12 @@ button:hover {
 
 h1 {
   text-align: center;
+  font-size: 35px;
 }
 
 h2 {
   text-align: center;
-  font-size: 15px;
+  font-size: 16px;
   font-weight: 300;
   padding-bottom: 20px;
 }
@@ -59,20 +60,20 @@ h2 {
   padding-bottom: 20px;
 }
 .current-temperature {
-  font-size: 50px;
+  font-size: 40px;
   font-weight: 600;
 }
 
-.col a {
+.current-temperature .units {
   text-decoration: none;
   color: #719192;
   font-size: 20px;
 }
-.col a:hover {
+.current-temperature .units:hover {
   color: #3c4245;
   cursor: pointer;
 }
-.col a:active {
+.current-temperature .units:active {
   color: #3c4245;
 }
 
@@ -80,7 +81,7 @@ h2 {
   font-weight: 600;
 }
 
-.currentpic {
+.current-icon {
   font-size: 70px;
   padding-top: 15px;
 }
