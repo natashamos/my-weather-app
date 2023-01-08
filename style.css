@@ -64,16 +64,16 @@ h2 {
   font-weight: 600;
 }
 
-.current-temperature .units {
+.units a {
   text-decoration: none;
   color: #719192;
   font-size: 20px;
 }
-.current-temperature .units:hover {
+.units a:hover {
   color: #3c4245;
   cursor: pointer;
 }
-.current-temperature .units:active {
+.units a:active {
   color: #3c4245;
 }
 
