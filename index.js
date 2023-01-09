@@ -47,6 +47,9 @@ function showWeather(response) {
   humidity.innerHTML = Math.round(response.data.temperature.humidity);
   let currentDayTime = document.querySelector("h2");
   currentDayTime.innerHTML = formatDate(response.data.time * 1000);
+  document
+    .querySelector("#icon")
+    .setAttribute("src", response.data.condition.icon_url);
 }
 
 function searchCity(city) {
@@ -74,9 +77,9 @@ searchCity("Zagreb");
 // current location
 function getLatLon(response) {
   console.log(response);
+  let lat = response.data.coords.latitude;
+  let lon = response.data.coords.longitude;
   let apiKey = "871226bt3b923e3o0bf9dcaf40d32e00";
-  let lat = response.coordinates.latitude;
-  let lon = response.coordinates.longitude;
   let apiUrl = `https://api.shecodes.io/weather/v1/current?lon=${lon}&lat=${lat}&key=${apiKey}&units=metric`;
   axios.get(apiUrl).then(showWeather);
 }
@@ -91,20 +94,21 @@ currentButton.addEventListener("click", getCurrentLocation);
 
 // conversion
 
-// function convertToFahrenheit(event) {
-//   event.preventDefault();
-//   let temperatureElement = document.querySelector("#current-temperature");
-//   temperatureElement.innerHTML = 66;
-// }
+function convertToFahrenheit(event) {
+  event.preventDefault();
+  let fahrenheitTemperature = (14 * 9) / 5 + 32;
+  let temperatureElement = document.querySelector("#current-temperature");
+  temperatureElement.innerHTML = Math.round(fahrenheitTemperature);
+}
 
-// function convertToCelsius(event) {
-//   event.preventDefault();
-//   let temperatureElement = document.querySelector("#current-temperature");
-//   temperatureElement.innerHTML = 19;
-// }
+function convertToCelsius(event) {
+  event.preventDefault();
+  let temperatureElement = document.querySelector("#current-temperature");
+  temperatureElement.innerHTML = 19;
+}
 
-// let fahrenheitLink = document.querySelector("#fahrenheit-link");
-// fahrenheitLink.addEventListener("click", convertToFahrenheit);
+let fahrenheitLink = document.querySelector("#fahrenheit-link");
+fahrenheitLink.addEventListener("click", convertToFahrenheit);
 
-// let celsiusLink = document.querySelector("#celsius-link");
-// celsiusLink.addEventListener("click", convertToCelsius);
+let celsiusLink = document.querySelector("#celsius-link");
+celsiusLink.addEventListener("click", convertToCelsius);
