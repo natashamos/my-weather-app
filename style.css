@@ -60,7 +60,7 @@ h2 {
   padding-bottom: 20px;
 }
 .current-temperature {
-  font-size: 40px;
+  font-size: 45px;
   font-weight: 600;
 }
 
@@ -68,7 +68,10 @@ h2 {
   text-decoration: none;
   color: #719192;
   font-size: 20px;
+  position: relative;
+  top: -15px;
 }
+
 .units a:hover {
   color: #3c4245;
   cursor: pointer;
