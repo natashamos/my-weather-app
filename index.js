@@ -1,4 +1,4 @@
-// date and time
+// day and time
 function formatDate(timestamp) {
   let now = new Date(timestamp);
   let hours = now.getHours();
@@ -28,32 +28,29 @@ function formatDate(timestamp) {
 function showWeather(response) {
   console.log(response.data.temperature);
 
+  document.querySelector("#current-city").innerHTML = response.data.city;
+
   let temperatureMain = document.querySelector("#current-temperature");
   celsiusTemperature = Math.round(response.data.temperature.current);
   temperatureMain.innerHTML = `${celsiusTemperature}`;
-  document.querySelector("#current-city").innerHTML = response.data.city;
+
   let description = document.querySelector("#description");
   description.innerHTML = response.data.condition.description;
+
   let feelsLike = document.querySelector("#feels-like");
   feelsLike.innerHTML = Math.round(response.data.temperature.feels_like);
+
   let windSpeed = document.querySelector("#wind-speed");
   windSpeed.innerHTML = Math.round(response.data.wind.speed);
+
   let humidity = document.querySelector("#humidity");
   humidity.innerHTML = Math.round(response.data.temperature.humidity);
+
   let currentDayTime = document.querySelector("h2");
   currentDayTime.innerHTML = formatDate(response.data.time * 1000);
   document
     .querySelector("#icon")
     .setAttribute("src", response.data.condition.icon_url);
-
-  // let lowTemperature = document.querySelector("#low-temperature");
-  // lowTemperature.innerHTML = `${Math.round(
-  //   response.data.daily.temperature.minimum
-  // )}°C/ `;
-  // let highTemperature = document.querySelector("#high-temperature");
-  // highTemperature.innerHTML = `${Math.round(
-  //   response.data.daily.temperature.maximum
-  // )}°C`;
 }
 
 function searchCity(city) {
@@ -72,9 +69,6 @@ function handleSubmit(event) {
   searchCity(searchCityInput.value);
 }
 
-let form = document.querySelector("#search-form");
-form.addEventListener("submit", handleSubmit);
-
 // current location
 function getLatLon(response) {
   console.log(response);
@@ -90,14 +84,7 @@ function getCurrentLocation(event) {
   navigator.geolocation.getCurrentPosition(getLatLon);
 }
 
-let currentButton = document.querySelector("#current-location-button");
-currentButton.addEventListener("click", getCurrentLocation);
-
-// default city
-searchCity("Zagreb");
-
 // conversion
-
 function convertToFahrenheit(event) {
   event.preventDefault();
   let fahrenheitTemperature = (celsiusTemperature * 9) / 5 + 32;
@@ -115,6 +102,12 @@ function convertToCelsius(event) {
   temperatureElement.innerHTML = Math.round(celsiusTemperature);
 }
 
+let form = document.querySelector("#search-form");
+form.addEventListener("submit", handleSubmit);
+
+let currentButton = document.querySelector("#current-location-button");
+currentButton.addEventListener("click", getCurrentLocation);
+
 let celsiusTemperature = null;
 
 let fahrenheitLink = document.querySelector("#fahrenheit-link");
@@ -122,3 +115,6 @@ fahrenheitLink.addEventListener("click", convertToFahrenheit);
 
 let celsiusLink = document.querySelector("#celsius-link");
 celsiusLink.addEventListener("click", convertToCelsius);
+
+// default city
+searchCity("Zagreb");
