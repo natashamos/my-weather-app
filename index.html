@@ -36,13 +36,13 @@
                 <div class="col">
                     <span class="current-temperature" id="current-temperature"></span>
                     <span class="units">
-                        <a href="#" id="celsius-link">°C |</a>
+                        <a href="#" id="celsius-link" class="active">°C |</a>
                         <a href="#" id="fahrenheit-link">°F</a>
                     </span>
-                    <div class="high-low">
+                    <!-- <div class="high-low">
                         <span class="low" id="low-temperature"></span>
                         <span class="high" id="high-temperature"></span>
-                    </div>
+                    </div> -->
                 </div>
                 <div class="col">
                     <img alt="icon" id="icon"
@@ -51,13 +51,13 @@
                 <div class="col">
                     <ul class="details">
                         <li>
-                            Feels like: <span id="feels-like">5</span>°C
+                            Feels like: <span id="feels-like"></span>°C
                         </li>
                         <li>
-                            Wind: <span id="wind-speed">1</span> mph
+                            Wind: <span id="wind-speed"></span> mph
                         </li>
                         <li>
-                            Humidity: <span id="humidity">87</span>%
+                            Humidity: <span id="humidity"></span>%
                         </li>
                     </ul>
                 </div>
@@ -69,7 +69,8 @@
                         <li>Fri</li>
                         <li><i class="fa-solid fa-cloud-rain"></i></li>
                         <li>4°C</li>
-                        <li class="high">9°C</li>
+                        <li class="max-temp-forecast
+                        ">9°C</li>
                     </ul>
                 </div>
                 <div class="col">
@@ -77,7 +78,8 @@
                         <li>Sat</li>
                         <li><i class="fa-solid fa-cloud-showers-heavy"></i></li>
                         <li>3°C</li>
-                        <li class="high">6°C</li>
+                        <li class="max-temp-forecast
+                        ">6°C</li>
                     </ul>
                 </div>
                 <div class="col">
@@ -85,7 +87,7 @@
                         <li>Sun</li>
                         <li><i class="fa-solid fa-cloud-rain"></i></li>
                         <li>1°C</li>
-                        <li class="high">5°C</li>
+                        <li class="max-temp-forecast">5°C</li>
                     </ul>
                 </div>
                 <div class="col">
@@ -93,7 +95,7 @@
                         <li>Mon</li>
                         <li><i class="fa-solid fa-cloud-sun"></i></li>
                         <li>-2°C</li>
-                        <li class="high">3°C</li>
+                        <li class="max-temp-forecast">3°C</li>
                     </ul>
                 </div>
                 <div class="col">
@@ -101,7 +103,7 @@
                         <li>Tue</li>
                         <li><i class="fa-solid fa-cloud-sun"></i></li>
                         <li>-5°C</li>
-                        <li class="high">2°C</li>
+                        <li class="max-temp-forecast">2°C</li>
                     </ul>
                 </div>
                 <div class="col">
@@ -109,7 +111,7 @@
                         <li>Wed</li>
                         <li><i class="fa-solid fa-cloud"></i></li>
                         <li>-4°C</li>
-                        <li class="high">2°C</li>
+                        <li class="max-temp-forecast">2°C</li>
                     </ul>
                 </div>
             </div>

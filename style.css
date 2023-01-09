@@ -8,7 +8,7 @@ body {
 }
 
 .weather {
-  background: #dfcdc3;
+  background: #edd9cf;
   border-radius: 10px;
   padding: 30px 60px 20px 60px;
   box-shadow: 5px 5px 30px rgba(0, 0, 0, 0.2);
@@ -65,22 +65,19 @@ h2 {
 }
 
 .units a {
-  text-decoration: none;
   color: #719192;
+  text-decoration: none;
   font-size: 20px;
   position: relative;
   top: -15px;
 }
 
-.units a:hover {
+.units .active {
   color: #3c4245;
-  cursor: pointer;
-}
-.units a:active {
-  color: #3c4245;
+  cursor: default;
 }
 
-.high {
+.max-temp-forecast {
   font-weight: 600;
 }
 

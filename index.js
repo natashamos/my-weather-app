@@ -27,18 +27,12 @@ function formatDate(timestamp) {
 // weather details from API
 function showWeather(response) {
   console.log(response.data.temperature);
-  let temperature = Math.round(response.data.temperature.current);
+
   let temperatureMain = document.querySelector("#current-temperature");
-  temperatureMain.innerHTML = `${temperature}`;
+  celsiusTemperature = Math.round(response.data.temperature.current);
+  temperatureMain.innerHTML = `${celsiusTemperature}`;
   document.querySelector("#current-city").innerHTML = response.data.city;
-  // let lowTemperature = document.querySelector("#low-temperature");
-  // lowTemperature.innerHTML = `${Math.round(
-  //   response.data.daily.temperature.minimum
-  // )}°C/ `;
-  // let highTemperature = document.querySelector("#high-temperature");
-  // highTemperature.innerHTML = `${Math.round(
-  //   response.data.daily.temperature.maximum
-  // )}°C`;
+
   let feelsLike = document.querySelector("#feels-like");
   feelsLike.innerHTML = Math.round(response.data.temperature.feels_like);
   let windSpeed = document.querySelector("#wind-speed");
@@ -50,6 +44,15 @@ function showWeather(response) {
   document
     .querySelector("#icon")
     .setAttribute("src", response.data.condition.icon_url);
+
+  // let lowTemperature = document.querySelector("#low-temperature");
+  // lowTemperature.innerHTML = `${Math.round(
+  //   response.data.daily.temperature.minimum
+  // )}°C/ `;
+  // let highTemperature = document.querySelector("#high-temperature");
+  // highTemperature.innerHTML = `${Math.round(
+  //   response.data.daily.temperature.maximum
+  // )}°C`;
 }
 
 function searchCity(city) {
@@ -96,16 +99,22 @@ currentButton.addEventListener("click", getCurrentLocation);
 
 function convertToFahrenheit(event) {
   event.preventDefault();
-  let fahrenheitTemperature = (14 * 9) / 5 + 32;
+  let fahrenheitTemperature = (celsiusTemperature * 9) / 5 + 32;
+  celsiusLink.classList.remove("active");
+  fahrenheitLink.classList.add("active");
   let temperatureElement = document.querySelector("#current-temperature");
   temperatureElement.innerHTML = Math.round(fahrenheitTemperature);
 }
 
 function convertToCelsius(event) {
   event.preventDefault();
+  celsiusLink.classList.add("active");
+  fahrenheitLink.classList.remove("active");
   let temperatureElement = document.querySelector("#current-temperature");
-  temperatureElement.innerHTML = 19;
+  temperatureElement.innerHTML = Math.round(celsiusTemperature);
 }
+
+let celsiusTemperature = null;
 
 let fahrenheitLink = document.querySelector("#fahrenheit-link");
 fahrenheitLink.addEventListener("click", convertToFahrenheit);
