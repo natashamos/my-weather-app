@@ -1,51 +1,57 @@
 // date and time
-let now = new Date();
+function formatDate(timestamp) {
+  let now = new Date(timestamp);
+  let hours = now.getHours();
+  if (hours < 10) {
+    hours = `0${hours}`;
+  }
+  let minutes = now.getMinutes();
+  if (minutes < 10) {
+    minutes = `0${minutes}`;
+  }
 
-let h2 = document.querySelector("h2");
+  let days = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
 
-let hours = now.getHours();
-if (hours < 10) {
-  hours = `0${hours}`;
+  let day = days[now.getDay()];
+  return `${day} ${hours}:${minutes}`;
 }
-let minutes = now.getMinutes();
-if (minutes < 10) {
-  minutes = `0${minutes}`;
-}
-
-let days = [
-  "Sunday",
-  "Monday",
-  "Tuesday",
-  "Wednesday",
-  "Thursday",
-  "Friday",
-  "Saturday",
-];
-let day = days[now.getDay()];
-
-h2.innerHTML = `${day} ${hours}:${minutes}`;
 
 // weather details from API
 function showWeather(response) {
-  let temperature = Math.round(response.data.main.temp);
+  console.log(response.data.temperature);
+  let temperature = Math.round(response.data.temperature.current);
   let temperatureMain = document.querySelector("#current-temperature");
   temperatureMain.innerHTML = `${temperature}`;
-  document.querySelector("#current-city").innerHTML = response.data.name;
-  let lowTemperature = document.querySelector("#low-temperature");
-  lowTemperature.innerHTML = `${Math.round(response.data.main.temp_min)}°C/ `;
-  let highTemperature = document.querySelector("#high-temperature");
-  highTemperature.innerHTML = `${Math.round(response.data.main.temp_max)}°C`;
+  document.querySelector("#current-city").innerHTML = response.data.city;
+  // let lowTemperature = document.querySelector("#low-temperature");
+  // lowTemperature.innerHTML = `${Math.round(
+  //   response.data.daily.temperature.minimum
+  // )}°C/ `;
+  // let highTemperature = document.querySelector("#high-temperature");
+  // highTemperature.innerHTML = `${Math.round(
+  //   response.data.daily.temperature.maximum
+  // )}°C`;
   let feelsLike = document.querySelector("#feels-like");
-  feelsLike.innerHTML = Math.round(response.data.main.feels_like);
+  feelsLike.innerHTML = Math.round(response.data.temperature.feels_like);
   let windSpeed = document.querySelector("#wind-speed");
   windSpeed.innerHTML = Math.round(response.data.wind.speed);
   let humidity = document.querySelector("#humidity");
-  humidity.innerHTML = Math.round(response.data.main.humidity);
+  humidity.innerHTML = Math.round(response.data.temperature.humidity);
+  let currentDayTime = document.querySelector("h2");
+  currentDayTime.innerHTML = formatDate(response.data.time * 1000);
 }
 
 function searchCity(city) {
-  let apiKey = "29be32213f7acee7090f774579eb6a64";
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+  let apiKey = "871226bt3b923e3o0bf9dcaf40d32e00";
+  let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=metric`;
   axios.get(apiUrl).then(showWeather);
   console.log(apiUrl);
 }
@@ -63,15 +69,15 @@ let form = document.querySelector("#search-form");
 form.addEventListener("submit", handleSubmit);
 
 // default city
-searchCity("Grad Zagreb");
+searchCity("Zagreb");
 
 // current location
 function getLatLon(response) {
   console.log(response);
-  let apiKey = "29be32213f7acee7090f774579eb6a64";
-  let lat = response.coords.latitude;
-  let lon = response.coords.longitude;
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
+  let apiKey = "871226bt3b923e3o0bf9dcaf40d32e00";
+  let lat = response.coordinates.latitude;
+  let lon = response.coordinates.longitude;
+  let apiUrl = `https://api.shecodes.io/weather/v1/current?lon=${lon}&lat=${lat}&key=${apiKey}&units=metric`;
   axios.get(apiUrl).then(showWeather);
 }
 
