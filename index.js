@@ -74,14 +74,11 @@ function handleSubmit(event) {
 let form = document.querySelector("#search-form");
 form.addEventListener("submit", handleSubmit);
 
-// default city
-searchCity("Zagreb");
-
 // current location
 function getLatLon(response) {
   console.log(response);
-  let lat = response.data.coords.latitude;
-  let lon = response.data.coords.longitude;
+  let lat = response.coords.latitude;
+  let lon = response.coords.longitude;
   let apiKey = "871226bt3b923e3o0bf9dcaf40d32e00";
   let apiUrl = `https://api.shecodes.io/weather/v1/current?lon=${lon}&lat=${lat}&key=${apiKey}&units=metric`;
   axios.get(apiUrl).then(showWeather);
@@ -94,6 +91,9 @@ function getCurrentLocation(event) {
 
 let currentButton = document.querySelector("#current-location-button");
 currentButton.addEventListener("click", getCurrentLocation);
+
+// default city
+searchCity("Zagreb");
 
 // conversion
 
