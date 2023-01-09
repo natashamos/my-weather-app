@@ -32,7 +32,8 @@ function showWeather(response) {
   celsiusTemperature = Math.round(response.data.temperature.current);
   temperatureMain.innerHTML = `${celsiusTemperature}`;
   document.querySelector("#current-city").innerHTML = response.data.city;
-
+  let description = document.querySelector("#description");
+  description.innerHTML = response.data.condition.description;
   let feelsLike = document.querySelector("#feels-like");
   feelsLike.innerHTML = Math.round(response.data.temperature.feels_like);
   let windSpeed = document.querySelector("#wind-speed");
