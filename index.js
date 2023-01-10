@@ -25,30 +25,50 @@ function formatDate(timestamp) {
 }
 
 // forecast
-function displayForecast() {
+
+function formatDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let day = date.getDay();
+  let days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+  return days(day);
+}
+
+function displayForecast(response) {
+  let forecast = response.data.daily;
+
   let forecastElement = document.querySelector("#forecast");
 
-  let forecastHTML = `<div class="row text-center week forecast" id="forecast">`;
-  let days = ["Thu", "Fri", "Sat", "Sun", "Mon"];
-  days.forEach(function (day) {
+  let forecastHTML = `<div class="row">`;
+  forecast.forEach(function (forecastDay) {
     forecastHTML =
       forecastHTML +
       `
     <div class="col">
-      <div class="day-forecast">Fri</div>
+      <div class="day-forecast">${forecastDay.time}</div>
       <div>
         <img
-          src="https://shecodes-assets.s3.amazonaws.com/api/weather/icons/few-clouds-day.png"
+          src="${forecastDay.condition.icon_url}"
           alt=""
           width="40"
         />
       </div>
-      <span class="max-temp-forecast">9°C</span>
-      <span class="min-temp-forecast">4°C</span>
+      <div class="max-temp-forecast">${Math.round(
+        forecastDay.temperature.maximum
+      )}°</div>
+      <div class="min-temp-forecast">${Math.round(
+        forecastDay.temperature.minimum
+      )}°</div>
     </div>`;
   });
-  forecastHTMl = forecastHTML + `</div>`;
+
+  forecastHTML = forecastHTML + `</div>`;
   forecastElement.innerHTML = forecastHTML;
+}
+
+function getForecast(coordinates) {
+  let apiKey = "871226bt3b923e3o0bf9dcaf40d32e00";
+  let apiUrl = `https://api.shecodes.io/weather/v1/current?lon=${lon}&lat=${lat}&key=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(displayForecast);
 }
 
 // weather details from API
@@ -78,13 +98,14 @@ function showWeather(response) {
   document
     .querySelector("#icon")
     .setAttribute("src", response.data.condition.icon_url);
+
+  getForecast(response.data.coords);
 }
 
 function searchCity(city) {
   let apiKey = "871226bt3b923e3o0bf9dcaf40d32e00";
   let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=metric`;
   axios.get(apiUrl).then(showWeather);
-  console.log(apiUrl);
 }
 
 // search form
@@ -145,4 +166,3 @@ celsiusLink.addEventListener("click", convertToCelsius);
 
 // default city
 searchCity("Zagreb");
-displayForecast();
