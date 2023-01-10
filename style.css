@@ -78,10 +78,6 @@ h2 {
   cursor: default;
 }
 
-.max-temp-forecast {
-  font-weight: 600;
-}
-
 .description {
   line-height: 16px;
 }
@@ -103,6 +99,18 @@ li {
 
 i {
   font-size: 25px;
+}
+
+.forecast {
+  padding-bottom: 10px;
+}
+
+.day-forecast {
+  font-size: 17px;
+}
+
+.max-temp-forecast {
+  font-weight: 600;
 }
 
 footer {
