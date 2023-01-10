@@ -24,6 +24,33 @@ function formatDate(timestamp) {
   return `${day} ${hours}:${minutes}`;
 }
 
+// forecast
+function displayForecast() {
+  let forecastElement = document.querySelector("#forecast");
+
+  let forecastHTML = `<div class="row text-center week forecast" id="forecast">`;
+  let days = ["Thu", "Fri", "Sat", "Sun", "Mon"];
+  days.forEach(function (day) {
+    forecastHTML =
+      forecastHTML +
+      `
+    <div class="col">
+      <div class="day-forecast">Fri</div>
+      <div>
+        <img
+          src="https://shecodes-assets.s3.amazonaws.com/api/weather/icons/few-clouds-day.png"
+          alt=""
+          width="40"
+        />
+      </div>
+      <span class="max-temp-forecast">9°C</span>
+      <span class="min-temp-forecast">4°C</span>
+    </div>`;
+  });
+  forecastHTMl = forecastHTML + `</div>`;
+  forecastElement.innerHTML = forecastHTML;
+}
+
 // weather details from API
 function showWeather(response) {
   console.log(response.data.temperature);
@@ -118,3 +145,4 @@ celsiusLink.addEventListener("click", convertToCelsius);
 
 // default city
 searchCity("Zagreb");
+displayForecast();
