@@ -98,7 +98,7 @@ function showWeather(response) {
   let humidity = document.querySelector("#humidity");
   humidity.innerHTML = Math.round(response.data.temperature.humidity);
 
-  let currentDayTime = document.querySelector("h2");
+  let currentDayTime = document.querySelector("#current-day-time");
   currentDayTime.innerHTML = formatDate(response.data.time * 1000);
   document
     .querySelector("#icon")
