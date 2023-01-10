@@ -65,17 +65,9 @@ h2 {
   font-weight: 600;
 }
 
-.units a {
-  color: #719192;
+.units {
   text-decoration: none;
-  font-size: 20px;
-  position: relative;
-  top: -15px;
-}
-
-.units .active {
-  color: #3c4245;
-  cursor: default;
+  font-size: 45px;
 }
 
 .description {
